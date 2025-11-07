@@ -17,32 +17,46 @@ export function Popup({ settings: { visible, content = {} }, setSettings }) {
     episode: episodes
   } = content;
 
-  const togglePopup = useCallback(
-    (e) => {
-      if (e.currentTarget !== e.target) {
-        return;
-      }
+  const closePopup = useCallback(() => {
+    setSettings((prevState) => ({
+      ...prevState,
+      visible: !prevState.visible
+    }));
+  }, [setSettings]);
 
-      setSettings((prevState) => ({
-        ...prevState,
-        visible: !prevState.visible
-      }));
+  const handleBackdropClick = useCallback(
+    (e) => {
+      if (e.currentTarget === e.target) {
+        closePopup();
+      }
     },
-    [setSettings]
+    [closePopup]
   );
 
   useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        closePopup();
+      }
+    };
+
     if (visible) {
       document.body.style.overflow = 'hidden';
+      document.addEventListener('keydown', handleEscape);
     } else {
       document.body.style.overflow = 'unset';
     }
-  }, [visible]);
+
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [visible, closePopup]);
 
   return (
-    <PopupContainer visible={visible}>
+    <PopupContainer visible={visible} onClick={handleBackdropClick}>
       <StyledPopup>
-        <CloseIcon onClick={togglePopup} />
+        <CloseIcon onClick={closePopup} />
 
         <PopupHeader
           name={name}
