@@ -13,11 +13,13 @@ export function ItemsGrid() {
   const { characters } = useData();
   const [popupSettings, setPopupSettings] = useState(defaultPopupSettings);
 
-  const cardOnClickHandler = useCallback((character) => {
-    setPopupSettings({
-      visible: true,
-      content: { ...character }
-    });
+  const createCardClickHandler = useCallback((character) => {
+    return () => {
+      setPopupSettings({
+        visible: true,
+        content: { ...character }
+      });
+    };
   }, []);
 
   if (!characters.length) {
@@ -29,7 +31,7 @@ export function ItemsGrid() {
       {characters.map((character) => (
         <Card
           key={character.id}
-          onClickHandler={cardOnClickHandler(character)}
+          onClickHandler={createCardClickHandler(character)}
           {...character}
         />
       ))}
