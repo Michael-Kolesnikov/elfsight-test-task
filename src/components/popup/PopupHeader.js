@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { CardStatus, CardTitle } from '../Card';
+import { CardTitle } from '../card/CardTitle';
+import { CardStatus } from './../card/CardStatus';
 
 export function PopupHeader({ image, name, gender, status, species, type }) {
   return (
