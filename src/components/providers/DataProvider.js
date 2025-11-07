@@ -38,7 +38,7 @@ export function DataProvider({ children }) {
 
   useEffect(() => {
     fetchData(apiURL);
-  }, [apiURL]);
+  }, [apiURL, fetchData]);
 
   const dataValue = useMemo(
     () => ({
