@@ -57,7 +57,7 @@ export function Pagination() {
           {activePage + 1 !== pages.length - 1 && (
             <>
               <Ellipsis>...</Ellipsis>
-              <Page onClick={pageClickHandler(pages.length)}>Last »</Page>
+              <Page onClick={pageClickHandler(pages.length - 1)}>Last »</Page>
             </>
           )}
         </>
