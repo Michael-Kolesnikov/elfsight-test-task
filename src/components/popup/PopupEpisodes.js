@@ -10,23 +10,28 @@ export function PopupEpisodes({ episodes }) {
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
-    if (!episodes?.length) {
-      return;
+    const fetchEpisodes = async () => {
+      try {
+        setIsFetching(true);
+        const episodesIds = episodes.map((url) => url.split('/').pop());
+        const response = await fetch(
+          `${API_EPISODES_URL}/${episodesIds.join(',')}`
+        );
+        const data = await response.json();
+
+        // Ensure data is always array
+        const episodesArray = Array.isArray(data) ? data : [data];
+        setSeries(episodesArray);
+      } catch (error) {
+        console.error('Failed to fetch episodes', error);
+      } finally {
+        setIsFetching(false);
+      }
+    };
+
+    if (episodes && episodes.length > 0) {
+      fetchEpisodes();
     }
-
-    setIsFetching(true);
-
-    const episodesIds = episodes.map((ep) => ep.match(/\d+$/)[0]);
-
-    axios
-      .get(`${API_EPISODES_URL}/${episodesIds.join(',')}`)
-      .then(({ data }) => {
-        if (episodes.length === 1) {
-          setSeries([data]);
-        } else {
-          setSeries(data);
-        }
-      });
   }, [episodes]);
 
   if (isFetching) {
