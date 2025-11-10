@@ -169,7 +169,6 @@ const GridContainer = styled.div`
   gap: 16px;
   padding: 20px;
   max-width: 800px;
-  margin: 0 auto;
 
   @media (max-width: 530px) {
     grid-template-columns: 1fr;
