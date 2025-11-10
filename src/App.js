@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Pagination, ItemsGrid, useData, Header, AppState } from './components';
+import { Popup } from './components/popup';
 
 export function App() {
   const { isFetching, isError } = useData();
@@ -17,6 +18,7 @@ export function App() {
           <Pagination />
         </>
       )}
+      <Popup />
     </Main>
   );
 }

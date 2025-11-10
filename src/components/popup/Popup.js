@@ -3,8 +3,13 @@ import { PopupEpisodes } from './PopupEpisodes';
 import { PopupHeader } from './PopupHeader';
 import { PopupInfo } from './PopupInfo';
 import { useCallback, useEffect } from 'react';
+import { usePopup } from './PopupProvider';
 
-export function Popup({ settings: { visible, content = {} }, setSettings }) {
+export function Popup() {
+  const {
+    popupSettings: { visible, content = {} },
+    setPopupSettings
+  } = usePopup();
   const {
     name,
     gender,
@@ -18,11 +23,11 @@ export function Popup({ settings: { visible, content = {} }, setSettings }) {
   } = content;
 
   const closePopup = useCallback(() => {
-    setSettings((prevState) => ({
+    setPopupSettings((prevState) => ({
       ...prevState,
       visible: !prevState.visible
     }));
-  }, [setSettings]);
+  }, [setPopupSettings]);
 
   const handleBackdropClick = useCallback(
     (e) => {
