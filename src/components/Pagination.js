@@ -1,21 +1,18 @@
 import styled from 'styled-components';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useData } from './providers';
 
 export function Pagination() {
   const [pages, setPages] = useState([]);
   const { apiURL, info, activePage, setActivePage, setApiURL } = useData();
 
-  const pageClickHandler = useCallback(
-    (index) => {
-      return () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setActivePage(index);
-        setApiURL(pages[index]);
-      };
-    },
-    [pages, setActivePage, setApiURL]
-  );
+  const pageClickHandler = (index) => {
+    return () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setActivePage(index);
+      setApiURL(pages[index]);
+    };
+  };
 
   useEffect(() => {
     const createdPages = Array.from({ length: info.pages }, (_, i) => {
