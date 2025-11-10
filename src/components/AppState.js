@@ -3,12 +3,18 @@ import { Loader, Text } from './common';
 import { useData } from './providers';
 
 export function AppState() {
-  const { isFetching, isError } = useData();
-
+  const { isFetching, isError, currentFilters } = useData();
   if (isError) {
     return (
       <AppStateContainer>
-        <Text>An error has occurred. Try other search parameters.</Text>
+        {!!currentFilters ? (
+          <Text>
+            No characters found with the current filters. Try changing your
+            search criteria.
+          </Text>
+        ) : (
+          <Text>An error has occurred. Try other search parameters.</Text>
+        )}
       </AppStateContainer>
     );
   }
