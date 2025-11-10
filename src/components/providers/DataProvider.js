@@ -17,6 +17,24 @@ export function DataProvider({ children }) {
   const [isError, setIsError] = useState(false);
   const [info, setInfo] = useState({});
   const [apiURL, setApiURL] = useState(API_URL);
+  const [currentFilters, setCurrentFilters] = useState({});
+
+  const applyFilters = useCallback((filters = {}) => {
+    const cleanParams = Object.fromEntries(
+      Object.entries(filters).filter(([, value]) => value !== '')
+    );
+    const queryString = new URLSearchParams(cleanParams).toString();
+    const newUrl = queryString ? `${API_URL}?${queryString}` : API_URL;
+    setCurrentFilters(cleanParams);
+    setApiURL(newUrl);
+    setActivePage(0);
+  }, []);
+
+  const resetFilters = useCallback(() => {
+    setCurrentFilters({});
+    setApiURL(API_URL);
+    setActivePage(0);
+  }, []);
 
   const fetchData = useCallback(async (url) => {
     setIsFetching(true);
@@ -50,9 +68,23 @@ export function DataProvider({ children }) {
       fetchData,
       isFetching,
       isError,
-      info
+      info,
+      applyFilters,
+      resetFilters,
+      currentFilters
     }),
-    [activePage, apiURL, characters, isFetching, isError, info, fetchData]
+    [
+      activePage,
+      apiURL,
+      characters,
+      isFetching,
+      isError,
+      info,
+      fetchData,
+      applyFilters,
+      resetFilters,
+      currentFilters
+    ]
   );
 
   return (
