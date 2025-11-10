@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.869ee58a.css",
+    "main.js": "/static/js/main.3bb441b7.js",
+    "static/media/green-portal.png": "/static/media/green-portal.a218ca229093de6f08d2.png",
+    "static/media/widget-logo.png": "/static/media/widget-logo.42c8df0b92603ef2e2e2.png",
+    "static/media/cross-svgrepo-com.svg": "/static/media/cross-svgrepo-com.f0f692777cafa708605f091ea38c8bca.svg",
+    "static/media/male.svg": "/static/media/male.42d01c2c5e1d7025a594642a761f1939.svg",
+    "index.html": "/index.html",
+    "static/media/arrow-up-svgrepo-com.svg": "/static/media/arrow-up-svgrepo-com.105962570a84ea14fe61103d7f4aeb21.svg",
+    "static/media/arrow-down-svgrepo-com.svg": "/static/media/arrow-down-svgrepo-com.be58a60f09e579d727825ab3744892e9.svg",
+    "static/media/genderless.svg": "/static/media/genderless.dec799ed2f3cfbb46522c185f9dbb030.svg",
+    "static/media/female.svg": "/static/media/female.02f202d68bdd63c12690625cf6aec3fd.svg",
+    "main.869ee58a.css.map": "/static/css/main.869ee58a.css.map",
+    "main.3bb441b7.js.map": "/static/js/main.3bb441b7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.869ee58a.css",
+    "static/js/main.3bb441b7.js"
+  ]
+}
