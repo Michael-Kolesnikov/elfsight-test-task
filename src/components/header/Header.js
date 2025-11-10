@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import { Logo } from './Logo';
+import { Search } from '../filters';
 
 export function Header() {
   return (
     <HeaderContainer>
       <Logo />
+      <Search />
     </HeaderContainer>
   );
 }
@@ -14,4 +16,9 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
+
+  @media (max-width: 950px) {
+    flex-direction: column;
+  }
 `;
